@@ -23,12 +23,4 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public JsonData login(String username, String password, HttpServletResponse response) {
-
-        String token = TokenUtils.createJwtToken(username);
-
-        response.addCookie(new Cookie("token", token));
-        return JsonData.buildSuccess("登陆成功");
-    }
 }

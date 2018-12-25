@@ -23,10 +23,12 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String login(Account account) {
-        if(account == null){
+        Account account1=  accountMapper.login(account);
+
+        if(account1 == null){
             return null;
         }else {
-            String studentId = account.getStudentId();
+            String studentId = account1.getStudentId();
             return studentId;
         }
     }

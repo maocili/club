@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-<title>前台登陆</title>
+<title>后台登陆</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" /> 
 
@@ -54,6 +54,13 @@
 	<script src="js/main.js"></script>
 
 	<script type="text/javascript">
+			
+		function setCookie(name,value){
+			var Days = 30;
+			var exp = new Date();
+			exp.setTime(exp.getTime() + Days*24*60*60*30);
+			document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+		}
 		$("#login_btn").click(function(){
 		   var username = $.trim($("#username").val());
 		   var password = $.trim($("#password").val());
@@ -69,18 +76,17 @@
 			
 			$.ajax({
 				type:"POST",
-				url:"http://993.nat123.cc/api/login",
+				url:"/api/login",
 				data:data,
 				dataType:'json',
 				timeout:5000,        //请求超时时间，毫秒
         		async: true, 
 				success:function(msg){
-					alert(msg);
-					if(msg==1){
-						//   window.location.href = "{:U('Index/personal')}"; 
-						alert("登录失败，请重试!");  
+					if(msg.code == 0)
+					{
+						alert(msg.msg);  
 					}else{
-						alert("登录失败，请重试!");
+						alert(msg.msg);  
 					}
 				},
 				error:function(){  //请求失败时被调用的函数

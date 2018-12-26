@@ -1,0 +1,69 @@
+<div class="maven-form-file">
+	<button type="button" class="mui-btn mui-btn-primary mui-icon mui-icon-plus maven-btn-file">选择文件</button>
+	<input type="file" id="doc-form-file" multiple="multiple">
+	<div id="demo" class="mui-progressbar">
+		<span></span>
+	</div>
+	div id="file-list">
+	</div>
+	</div>
+	<input type="hidden" name="token" value='{jiujin_$token}'>
+	<input type="hidden" name="user_id" value='{jiujin_$user_id}'>
+	<input type="hidden" name="wecha_id" value='{jiujin_$wecha_id}'>
+	<div class="mui-button-row">
+		<button type="submit" class="mui-btn mui-btn-primary">确认</button>  
+		<a href="javascript:history.back()" class="mui-btn mui-btn-danger">取消</a>
+	</div>
+			</div>
+		</form>
+	</div>
+<script type="text/javascript" src="__PUBLIC__/Jiujin/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/mui/dist/js/mui.min.js"></script>
+<script>
+	$(function(){
+		// mui("#demo1").progressbar({progress:20}).show();
+		$('#doc-form-file').on('change', function() {
+			var fileNames = '';
+			var formData = new FormData();  
+			formData.append("myfile",this.files[0]);
+			if(this.files[0]==undefined){
+				mui.alert('你没选文件',"提示","确定");
+				return false;
+			}
+			var process=0;
+			mui("#demo")[0].style.visibility='visible';
+			mui("#demo").progressbar({progress:10}).show();
+			$.ajax({
+				url: "{jiujin_:U('wap_filepost')}",
+				type: "POST",
+				data: formData,
+            	contentType: false,//必须false才会自动加上正确的Content-Type
+            	processData: false,//必须false才会避开jQuery对 formdata 的默认处理
+            	xhr: function(){ //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数  
+            		myXhr = $.ajaxSettings.xhr();  
+                if(myXhr.upload){ //检查upload属性是否存在  
+                    //绑定progress事件的回调函数  
+                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false);   
+                }  
+                return myXhr; //xhr对象返回给jQuery使用  
+            },
+            success: function (data) {
+            	mui("#demo")[0].style.visibility='hidden';
+            	if (data.status ==1) {
+            		fileNames = '<span class="mui-badge mui-badge-success">' + data.filename + '</span> <input type="hidden" name="files[]" value="'+data.id+'">';
+            		$('#file-list').append(fileNames);
+            	}
+            	mui.alert(data.info,"提示","确定");
+            },
+            error: function () {
+            	mui.alert("上传失败！","提示","确定");
+            }
+        });
+            function progressHandlingFunction(e){
+				var curr=e.loaded;
+				var total=e.total;
+				process=curr/total*100;
+				mui("#demo").progressbar().setProgress(process);
+			}
+		});
+</script>

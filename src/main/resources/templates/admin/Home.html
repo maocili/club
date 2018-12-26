@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../assets/demo/demo.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="orange">
+        <!--
+Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+-->
+        <div class="logo">
+            <a href="#" class="simple-text logo-mini">
+                账户:
+            </a>
+            <a href="#" class="simple-text logo-normal" id="username">
+
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="active">
+                    <a href="/admin/Home">
+                        <i class="now-ui-icons design_bullet-list-67"></i>
+                        <p>新闻发布</p>
+                    </a>
+                </li>
+                <!-- <li >
+                <a href="../WISH_PF.aspx">
+                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <p>Wish 商品评分表</p>
+                </a>
+            </li>
+            <li>
+                <a href="../WISH_ADD.aspx">
+                    <i class="now-ui-icons business_badge"></i>
+                    <p>用户信息</p>
+                </a>
+            </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <div class="navbar-toggle">
+                        <button type="button" class="navbar-toggler">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </button>
+                    </div>
+                    <a class="navbar-brand">表格搜索</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                    <form>
+                        <div class="input-group no-border">
+                            <input type="text" value="" class="form-control" placeholder="Search...">
+                            <span class="input-group-addon">
+                                        <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                    </span>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav">
+                        <!-- <li class="nav-item">
+                        <a class="nav-link" href="#pablo">
+                            <i class="now-ui-icons media-2_sound-wave"></i>
+                            <p>
+                                <span class="d-lg-none d-md-block">Stats</span>
+                            </p>
+                        </a>
+                    </li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="panel-header panel-header-sm">
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"> 活动发布 </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <footer class="footer">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md pl-1">
+                                                <div class="form-group">
+                                                    <input type="button" value="活动发布" class="btn btn-primary btn-block"
+                                                           id="hdfb">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        活动ID
+                                    </th>
+                                    <th>
+                                        活动标题
+                                    </th>
+                                    <th>
+                                        发布人
+                                    </th>
+                                    <th>
+                                        发布时间
+                                    </th>
+                                    <th>
+                                        图片
+                                    </th>
+                                    <th class="text-right">
+                                        更新
+                                    </th>
+                                    <th class="text-right">
+                                        删除
+                                    </th>
+                                    </thead>
+                                    <tbody id="html_table">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="form1" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加新闻</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="txt_departmentname">活动标题</label>
+                        <input type="text" name="activity_title" class="form-control" placeholder="活动标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_parentdepartment">活动名字</label>
+                        <input type="text" name="activity_name" class="form-control" placeholder="活动名字">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_statu">活动地址</label>
+                        <input type="text" name="activity_address" class="form-control"  placeholder="准确地点">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_parentdepartment">活动详细</label>
+                        <textarea name="activity_content" id="editor1" rows="10" cols="50">活动详细...</textarea>
+                    </div>
+                    <div class="form-group">
+                            文件:<input id="file" type="file" name="img_src" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_parentdepartment">活动时间</label>
+                        <input type="date" name="time" class="form-control" placeholder="活动时间">
+                    </div>
+                    <input type="hidden" name="username" id="upload_username">
+                    <input type="hidden" name="upload_id" id="upload_id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-remove"
+                            aria-hidden="true"></span>关闭
+                    </button>
+                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+<!--   Core JS Files   -->
+<!--<script src="../assets/js/core/jquery.min.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- <script src="../ajaxfileupload.js"></script> -->
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+
+<!-- Chart JS -->
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/now-ui-dashboard.js?v=1.0.1"></script>
+<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/demo/demo.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
+<script src="../js/home.js"></script>
+
+</html>

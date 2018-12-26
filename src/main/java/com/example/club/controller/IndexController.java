@@ -13,7 +13,24 @@ public class IndexController {
 
 
     @GetMapping("/index")
-    public String index(@SessionAttribute(WebSecurityConfig.SESSION_KEY)String account, Model model){
+    public String index(@SessionAttribute(WebSecurityConfig.SESSION_KEY) String account, Model model) {
         return "index";
     }
+
+    @GetMapping("/aboutus")
+    public String aboutus() {
+        return "aboutus";
+    }
+
+    @GetMapping("/video")
+    public String video() {
+        return "video";
+    }
+
+    @GetMapping("/contactus")
+    public String contactus() {
+        return "contactus";
+    }
+
+
 }

@@ -38,6 +38,8 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
 
 
         addInterceptor.addPathPatterns("/test/logout");
+//        addInterceptor.addPathPatterns("/admin/Home");
+
 //        addInterceptor.addPathPatterns("/**");
     }
 

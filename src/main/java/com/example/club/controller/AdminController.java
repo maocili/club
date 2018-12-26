@@ -44,5 +44,10 @@ public class AdminController {
         return "admin/activity";
     }
 
+    @RequestMapping("upload")
+    public String upload() {
+        return "upload";
+    }
+
 
 }

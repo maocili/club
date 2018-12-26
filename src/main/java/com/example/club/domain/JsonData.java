@@ -19,10 +19,12 @@ public class JsonData implements Serializable {
         this.msg = msg;
     }
 
+
     // 成功，传入数据
     public static JsonData buildSuccess() {
         return new JsonData(0, null, null);
     }
+
 
     // 成功，传入数据
     public static JsonData buildSuccess(Object data) {

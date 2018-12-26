@@ -1,25 +1,27 @@
 package com.example.club.controller;
 
 import com.example.club.config.WebSecurityConfig;
-import com.example.club.domain.Account;
-import com.example.club.domain.JsonData;
-import com.example.club.domain.Permission;
-import com.example.club.domain.Student;
+import com.example.club.domain.*;
 import com.example.club.mapper.AccountMapper;
+import com.example.club.mapper.ActivityMapper;
 import com.example.club.mapper.AdminMapper;
 import com.example.club.service.AccountService;
+import com.example.club.service.ActivtyService;
 import com.example.club.service.impl.AccountServiceImpl;
 import com.example.club.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -34,6 +36,13 @@ public class ApiBootController {
 
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private ActivityMapper activityMapper;
+
+
+    @Autowired
+    private ActivtyService activtyService;
 
     /**
      * @param username
@@ -214,9 +223,92 @@ public class ApiBootController {
 
     }
 
-//    @PostMapping("activity")
-//    public JsonData activity(){
-//
-//    }
+    /**
+     * /api/addActivty
+     * 新增一项活动
+     *
+     * @param activity
+     * @return
+     */
+    @PostMapping("addActivty")
+    public JsonData addActivty(Activity activity) {
+        String img ="/"+ activity.getImg_src();
+        activity.setImg_src(img);
+        int code = activtyService.addActivity(activity);
+        return JsonData.buildSuccess(activity, code);
+    }
+
+
+    /**
+     * /api/getAllActivty
+     * 查询当前所有的活动记录
+     *
+     * @return
+     */
+    @PostMapping("getAllActivty")
+    public JsonData getAllActivty() {
+        return JsonData.buildSuccess(activityMapper.getAll());
+    }
+
+    /**
+     * /api/updateActivty
+     * 根据id更新活动内容
+     *
+     * @param activity
+     * @return 成功返回code为更新行数
+     */
+    @PostMapping("updateActivty")
+    public JsonData updateActivty(Activity activity) {
+        try {
+            int line = activityMapper.updateActivity(activity);
+            if (line == 0) {
+                return JsonData.buildError("更新活动失败");
+            } else {
+                return JsonData.buildSuccess("成功更新" + line + "行数据", line);
+            }
+
+        } catch (DataIntegrityViolationException e) {
+            return JsonData.buildError("字段过长");
+        }
+    }
+
+    /**
+     * 根据id删除活动
+     *
+     * @param id 对应数据库中的id字段
+     * @return
+     */
+    @PostMapping("deleteActivityById")
+    public JsonData deleteActivityById(int id) {
+
+        try {
+            int lines = activityMapper.deleteActivityById(id);
+            return JsonData.buildSuccess("成功删除" + lines + "行数据", lines);
+        } catch (Exception e) {
+            return JsonData.buildError(e.getMessage());
+        }
+
+
+    }
+
+    @PostMapping("getActivityById")
+    public JsonData getActivityById(int id) {
+        return JsonData.buildSuccess(activtyService.getActivityById(id));
+    }
+
+    /**
+     * 获得最新的活动
+     * @param top
+     * @return
+     */
+    @PostMapping("getNewTop")
+    public JsonData getNew(int top) {
+        return JsonData.buildSuccess(activityMapper.getNew(top));
+    }
+
+    @PostMapping("getPage")
+      public JsonData getPage(int lines,int start) {
+        return JsonData.buildSuccess(activityMapper.getPage(lines,start));
+    }
 
 }

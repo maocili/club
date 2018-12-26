@@ -27,7 +27,7 @@ public class FileController {
 
     @RequestMapping(value = "/api/upload")
     @ResponseBody
-    public JsonData upload(@RequestParam("head_img") MultipartFile file, HttpServletRequest request) {
+    public JsonData upload(@RequestParam("img_src") MultipartFile file, HttpServletRequest request) {
         /*
         *处理提交的上传文件
         * 返回类 JsonData

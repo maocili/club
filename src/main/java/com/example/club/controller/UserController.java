@@ -7,13 +7,13 @@ import com.example.club.service.EnterService;
 import com.example.club.service.impl.EnterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/activity")
 public class UserController {
 
     @Autowired
@@ -23,15 +23,35 @@ public class UserController {
     EnterService enterService;
 
 
+    /**
+     * /activity/enter
+     * 活动报名
+     * @param enter
+     * activityId 活动id
+     * studentId 学生id
+     * @return
+     */
     @PostMapping("enter")
     public JsonData enter(Enter enter) {
-//        return JsonData.buildSuccess(enter);
+        try {
+            int lines = enterService.enterActivty(enter);
+            return JsonData.buildSuccess(lines,"报名成功");
+        }catch (Exception e)
+        {
+            return JsonData.buildError("该活动不存在或学号不为社团成员");
+        }
 
-        if (enterService.enterActivty(enter) != 0) {
-            return JsonData.buildSuccess(null,"报名成功");
-        }
-        else {
-            return JsonData.buildError("报名失败");
-        }
+    }
+
+    /**
+     *
+     * 获得所有报名信息
+     * @return
+     * activity/getAll
+    **/
+    @RequestMapping("getAll")
+    public List getAll(){
+        List<Enter> enters= enterService.getAll();
+        return enters;
     }
 }

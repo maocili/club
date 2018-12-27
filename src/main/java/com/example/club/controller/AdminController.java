@@ -39,6 +39,11 @@ public class AdminController {
         return "admin/Home";
     }
 
+    @RequestMapping("Student")
+    public String StudentPage() {
+        return "admin/Student";
+    }
+
     @RequestMapping("activity")
     public String activity() {
         return "admin/activity";

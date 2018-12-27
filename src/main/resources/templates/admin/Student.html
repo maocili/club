@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -48,8 +48,6 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>学生信息管理</p>
                     </a>
-
-
                 </li>
                 <!-- <li >
                 <a href="../WISH_PF.aspx">
@@ -116,7 +114,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> 活动发布 </h4>
+                            <h4 class="card-title"> 社员信息管理 </h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -125,7 +123,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                                         <div class="row">
                                             <div class="col-md pl-1">
                                                 <div class="form-group">
-                                                    <input type="button" value="活动发布" class="btn btn-primary btn-block"
+                                                    <input type="button" value="新增社员" class="btn btn-primary btn-block"
                                                            id="hdfb">
                                                 </div>
                                             </div>
@@ -139,19 +137,16 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <th>
-                                        活动ID
+                                        学号
                                     </th>
                                     <th>
-                                        活动标题
+                                        学生姓名
                                     </th>
                                     <th>
-                                        发布人
+                                        系部
                                     </th>
                                     <th>
-                                        发布时间
-                                    </th>
-                                    <th>
-                                        图片
+                                        班级
                                     </th>
                                     <th class="text-right">
                                         更新
@@ -173,45 +168,58 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
         </div>
     </div>
 </div>
-<form id="form1" method="post" enctype="multipart/form-data">
+<form id="form1" method="post">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">添加新闻</h4>
+                    <h4 class="modal-title" id="myModalLabel">添加社员</h4>
                 </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="txt_departmentname">活动标题</label>
-                        <input type="text" name="activity_title" id="activity_title" class="form-control"
-                               placeholder="活动标题">
+                        <label for="txt_departmentname">学号</label>
+                        <input type="text" name="studentId" id="studentId" class="form-control"
+                               placeholder="学号">
                     </div>
                     <div class="form-group">
-                        <label for="txt_parentdepartment">活动名字</label>
-                        <input type="text" name="activity_name" id="activity_name" class="form-control"
-                               placeholder="活动名字">
+                        <label for="txt_parentdepartment">姓名</label>
+                        <input type="text" name="studentName" id="studentName" class="form-control"
+                               placeholder="姓名">
                     </div>
                     <div class="form-group">
-                        <label for="txt_statu">活动地址</label>
-                        <input type="text" name="activity_address" id="activity_address" class="form-control"
-                               placeholder="准确地点">
-                    </div>
-                    <div class="form-group">
-                        <label for="txt_parentdepartment">活动详细</label>
-                        <textarea name="activity_content" id="editor1" rows="10" cols="50"></textarea>
-                    </div>
-                    <div class="form-group">
-                        文件:<input id="file" type="file" name="img_src"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="txt_parentdepartment">活动时间</label>
-                        <input type="date" name="time" id="time" class="form-control" placeholder="活动时间">
+                        <label for="txt_statu">系部</label>
+                        <!--<input type="text" name="activity_address" id="activity_address" class="form-control"-->
+                        <!--placeholder="系部">-->
+                        <select type="text" name ="departmentName" id="departmentName" class="form-control" placeholder="系部">>
+                            <option value="volvo">信息技术</option>
+                            <option value="saab">工商</option>
+                            <option value="opel">人文</option>
+                            <option value="audi">财会</option>
+                        </select>
+
                     </div>
 
-                    <input type="hidden" name="username"  id="upload_username">
+                    <div class="form-group">
+                        <label for="txt_parentdepartment">班级</label>
+                        <input type="text" name="className" id="className" class="form-control"
+                               placeholder="班级">
+                    </div>
+                    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="txt_parentdepartment">活动详细</label>&ndash;&gt;-->
+                    <!--<textarea type="hidden" name="activity_content" id="editor1"></textarea>-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--<div class="form-group">-->
+                        <!--文件:<input id="file" type="file" name="img_src"/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="txt_parentdepartment">活动时间</label>-->
+                        <!--<input type="date" name="time" id="time" class="form-control" placeholder="活动时间">-->
+                    <!--</div>-->
+
+                    <input type="hidden" name="username" id="upload_username">
                     <input type="hidden" name="upload_id" id="upload_id">
                 </div>
                 <div class="modal-footer">
@@ -248,6 +256,6 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/demo/demo.js"></script>
 <script src="../ckeditor/ckeditor.js"></script>
-<script src="../js/home.js"></script>
+<script src="../js/student.js"></script>
 
 </html>

@@ -70,10 +70,10 @@ public class ApiBootController {
                 if (student == null) {
                     return JsonData.buildError("未能查询到该学号，请联系管理员", 1);
                 } else {
-                    String token = TokenUtils.createJwtToken(account.getStudentId());
-                    response.addCookie(new Cookie("token", token));
-                    //session
-                    session.setAttribute(WebSecurityConfig.SESSION_KEY, username);
+//                    String token = TokenUtils.createJwtToken(account.getStudentId());
+//                    response.addCookie(new Cookie("token", token));
+//                    //session
+//                    session.setAttribute(WebSecurityConfig.SESSION_KEY, username);
 
 
                     return JsonData.buildSuccess(student, "登陆成功");

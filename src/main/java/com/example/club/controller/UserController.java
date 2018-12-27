@@ -7,6 +7,7 @@ import com.example.club.service.EnterService;
 import com.example.club.service.impl.EnterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -26,32 +27,39 @@ public class UserController {
     /**
      * /activity/enter
      * 活动报名
-     * @param enter
-     * activityId 活动id
-     * studentId 学生id
+     *
+     * @param enter activityId 活动id
+     *              studentId 学生id
      * @return
      */
     @PostMapping("enter")
     public JsonData enter(Enter enter) {
+
+        int activityId = enter.getActivityId();
+        String studentId = enter.getStudentId();
+
+        boolean isSuccess = enterService.isSuccess(activityId,studentId);
+        if (isSuccess){
+            return JsonData.buildError("请忽重复报名");
+        }
+
         try {
             int lines = enterService.enterActivty(enter);
-            return JsonData.buildSuccess(lines,"报名成功");
-        }catch (Exception e)
-        {
+            return JsonData.buildSuccess(lines, "报名成功");
+        } catch (Exception e) {
             return JsonData.buildError("该活动不存在或学号不为社团成员");
         }
 
     }
 
     /**
-     *
      * 获得所有报名信息
-     * @return
-     * activity/getAll
-    **/
+     *
+     * @return activity/getAll
+     **/
     @RequestMapping("getAll")
-    public List getAll(){
-        List<Enter> enters= enterService.getAll();
+    public List getAll() {
+        List<Enter> enters = enterService.getAll();
         return enters;
     }
 }

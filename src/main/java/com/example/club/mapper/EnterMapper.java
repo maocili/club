@@ -23,4 +23,14 @@ public interface EnterMapper {
             @Result(property = "className",column = "class_name")
     })
     List<Enter>getAll();
+
+    @Select("select * from enter where activity_id=#{activityId} and student_id=#{studentId}")
+    @Results({
+            @Result(property = "studentId",column = "student_id"),
+            @Result(property = "activityId",column = "activity_id"),
+            @Result(property = "studentName",column = "student_name"),
+            @Result(property = "departmentName",column = "department_name"),
+            @Result(property = "className",column = "class_name")
+    })
+    Enter findIsSuccess(int activityId,String studentId);
 }

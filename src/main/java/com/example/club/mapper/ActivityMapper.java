@@ -17,7 +17,7 @@ public interface ActivityMapper {
     @Select("SELECT * from activity ORDER BY id desc limit  #{top}")
     List<Activity> getNew(int top);
 
-    @Select("SELECT * FROM activity order by id ASC LIMIT #{lines} OFFSET #{start}")
+    @Select("SELECT * FROM activity order by id desc LIMIT #{lines} OFFSET #{start}")
     List<Activity> getPage(int lines,int start);
 
     @Insert("INSERT INTO activity VALUES(null,#{activity_title},#{activity_name},#{activity_content},#{activity_address},#{username},#{time},#{img_src})")

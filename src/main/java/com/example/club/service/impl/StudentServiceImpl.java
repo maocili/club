@@ -20,7 +20,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getAllStudent(int lines,int start) {
-        return studentMapper.getAllStudent(lines,start);
+    public List<Student> getStudent(int lines,int start) {
+        return studentMapper.getStudent(lines,start);
+    }
+
+    @Override
+    public List<Student> getAllStudent() {
+        return studentMapper.getAllStudent();
+    }
+
+    @Override
+    public Student getStudentById(String studentId) {
+        return studentMapper.getStudentById(studentId);
+    }
+
+    @Override
+    public int deleteStudentById(String studentId) {
+        return studentMapper.deleteStudentById(studentId);
     }
 }

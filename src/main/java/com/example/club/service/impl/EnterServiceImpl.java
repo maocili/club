@@ -27,4 +27,14 @@ public class EnterServiceImpl implements EnterService {
     public List<Enter> getAll() {
         return enterMapper.getAll();
     }
+
+    @Override
+    public boolean isSuccess(int activityId, String studentId) {
+
+        Enter enter = enterMapper.findIsSuccess(activityId,studentId);
+        if (enter==null){
+            return false;
+        }
+        return true;
+    }
 }

@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getAllStudent() {
-        return studentMapper.getAllStudent();
+    public List<Student> getAllStudent(int lines,int start) {
+        return studentMapper.getAllStudent(lines,start);
     }
 }

@@ -6,5 +6,6 @@ public interface ActivtyService {
 
     public int addActivity(Activity activity);
     public Activity getActivityById(int id);
+    public int updateActivityById(Activity activity);
 
 }

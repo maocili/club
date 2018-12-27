@@ -34,8 +34,8 @@ public class StudentController {
      *
      */
     @RequestMapping("getAllStudent")
-    public JsonData getAllStudent()
+    public JsonData getAllStudent(int lines,int start)
     {
-        return JsonData.buildSuccess(studentService.getAllStudent());
+        return JsonData.buildSuccess(studentService.getAllStudent(lines,start));
     }
 }

@@ -44,4 +44,10 @@ public class AcitvityServiceImpl implements ActivtyService {
         Activity activity = activityMapper.getById(id);
         return activity;
     }
+
+    @Override
+    public int updateActivityById(Activity activity) {
+        return activityMapper.updateActivity(activity);
+
+    }
 }

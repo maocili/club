@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -181,28 +180,32 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
 
                     <div class="form-group">
                         <label for="txt_departmentname">活动标题</label>
-                        <input type="text" name="activity_title" class="form-control" placeholder="活动标题">
+                        <input type="text" name="activity_title" id="activity_title" class="form-control"
+                               placeholder="活动标题">
                     </div>
                     <div class="form-group">
                         <label for="txt_parentdepartment">活动名字</label>
-                        <input type="text" name="activity_name" class="form-control" placeholder="活动名字">
+                        <input type="text" name="activity_name" id="activity_name" class="form-control"
+                               placeholder="活动名字">
                     </div>
                     <div class="form-group">
                         <label for="txt_statu">活动地址</label>
-                        <input type="text" name="activity_address" class="form-control"  placeholder="准确地点">
+                        <input type="text" name="activity_address" id="activity_address" class="form-control"
+                               placeholder="准确地点">
                     </div>
                     <div class="form-group">
                         <label for="txt_parentdepartment">活动详细</label>
-                        <textarea name="activity_content" id="editor1" rows="10" cols="50">活动详细...</textarea>
+                        <textarea name="activity_content" id="editor1" rows="10" cols="50"></textarea>
                     </div>
                     <div class="form-group">
-                            文件:<input id="file" type="file" name="img_src" />
+                        文件:<input id="file" type="file" name="img_src"/>
                     </div>
                     <div class="form-group">
                         <label for="txt_parentdepartment">活动时间</label>
-                        <input type="date" name="time" class="form-control" placeholder="活动时间">
+                        <input type="date" name="time" id="time" class="form-control" placeholder="活动时间">
                     </div>
-                    <input type="hidden" name="username" id="upload_username">
+
+                    <input type="hidden" name="username"  id="upload_username">
                     <input type="hidden" name="upload_id" id="upload_id">
                 </div>
                 <div class="modal-footer">

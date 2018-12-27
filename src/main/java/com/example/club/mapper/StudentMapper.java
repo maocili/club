@@ -13,13 +13,13 @@ public interface StudentMapper {
 
     @Insert("Insert into student_info values(#{studentId},#{departmentName},#{studentName},#{className})")
     int addStudent(Student student);
-
-    @Select("select * from student_info")
+//    SELECT * FROM activity order by id ASC LIMIT #{lines} OFFSET #{start}
+    @Select("SELECT * FROM student_info order by id ASC LIMIT #{lines} OFFSET #{start}")
     @Results({
             @Result(property = "studentId",column = "student_id"),
             @Result(property = "departmentName",column = "department_name"),
             @Result(property = "studentName",column = "student_name"),
             @Result(property = "className",column = "class_name"),
     })
-    List<Student> getAllStudent();
+    List<Student> getAllStudent(int lines,int start);
 }

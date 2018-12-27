@@ -3,7 +3,7 @@ package com.example.club.domain;
 import java.util.Date;
 
 public class Activity {
-    private int id;
+    private String id;
     private String activity_title;
     private String activity_name;
     private String activity_content;
@@ -12,11 +12,12 @@ public class Activity {
     private String time;
     private String img_src;
 
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

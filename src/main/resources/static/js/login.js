@@ -10,6 +10,7 @@ $("#login_btn").click(function(){
      }
      //ajax去服务器端校验
      var data= {username:username,password:password};
+     
      $.ajax({
          type:"POST",
          url:"/api/admin",

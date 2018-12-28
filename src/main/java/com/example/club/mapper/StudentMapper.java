@@ -39,7 +39,7 @@ public interface StudentMapper {
     })
     Student getStudentById(String studentId);
 
-    @Delete("DELETE FROM student_info WHERE studentId =#{studentId}")
+    @Delete("DELETE FROM student_info WHERE student_id =#{studentId}")
     int deleteStudentById(String studentId);
 
 }

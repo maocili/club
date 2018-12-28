@@ -1,15 +1,19 @@
 package com.example.club.controller;
 
+import com.example.club.domain.Activity;
 import com.example.club.domain.JsonData;
 import com.example.club.domain.Student;
 import com.example.club.mapper.AccountMapper;
 import com.example.club.service.AccountService;
 import com.example.club.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/student")
@@ -22,15 +26,30 @@ public class StudentController {
      * /student/addStudent
      * 新增社团成员
      *
-     * @param student
+     * @param request
      * @return
      */
     @PostMapping("addStudent")
-    public JsonData addStudent(Student student) {
-        return JsonData.buildSuccess(student);
-//        int lines = studentService.addStudent(student);
-//        return JsonData.buildSuccess(lines, "成功添加" + lines + "名社员");
+    public JsonData addStudent(HttpServletRequest request) {
+        /*
+         *处理提交的上传文件
+         * 返回类 JsonData
+         *
+         * */
+        //上传时 包含name的字段因此这里调用了HttpServletRequest接口进行处理
+        //
+        Student student = new Student();
+
+        student.setStudentId(request.getParameter("studentId"));
+        student.setStudentName(request.getParameter("studentName"));
+        student.setDepartmentName(request.getParameter("departmentName"));
+        student.setClassName(request.getParameter("className"));
+
+        int lines = studentService.addStudent(student);
+        return JsonData.buildSuccess("","成功添加"+lines+"名");
+
     }
+
 
     /**
      * /student/getStudent

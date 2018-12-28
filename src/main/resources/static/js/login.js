@@ -17,7 +17,7 @@ $("#login_btn").click(function(){
          data:data,
          dataType:'json',
          timeout:5000,        //请求超时时间，毫秒
-         async: true, 
+         async: true,
          success:function(msg){
              if(msg.code == 0)
              {
